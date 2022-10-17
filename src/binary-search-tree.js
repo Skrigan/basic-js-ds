@@ -30,19 +30,26 @@ class BinarySearchTree {
   }
   searhPath(_root, obj) {
 
-      if (_root.data > obj.data && _root.left != null) {
-          // searhPath(_root.right, obj);
-          this.searhPath(_root.left, obj)
-          return
-      }
-      else if(_root.right != null) {
-          // searhPath(_root.left, obj);
-          this.searhPath(_root.right, obj)
-          return
-      }
-      if (_root.data > obj.data) _root.left = obj
-      else _root.right = obj
-  }
+    if (_root.data > obj.data && _root.left != null) {
+        // searhPath(_root.right, obj);
+        this.searhPath(_root.left, obj)
+        return
+    }
+    else if(_root.data < obj.data && _root.right != null) {
+        // searhPath(_root.left, obj);
+        this.searhPath(_root.right, obj)
+        return
+    }
+    //НЕ РАБОТАЕТ...
+    if (_root.data > obj.data) {
+        _root.left = obj;
+        return;
+    }
+    else if (_root.data < obj.data) {
+        _root.right = obj;
+        return;
+    }
+}
 
   has(data, _root = this._root) {
     if (_root.data > data && _root.left) {
@@ -66,19 +73,39 @@ class BinarySearchTree {
       else return null;
   }
 
-  remove(/* data */) {
-      throw new NotImplementedError('Not implemented');
+  // remove(data) {
+  //   let _root = this.find(data)
+  //   let _nextRoor = _root;
+  //   // let _remove = true;
+  //   if (_root.left && _root.left.right) {
+      
+  //   }
+  //   while (true) {
+  //     if (_root.data !== data) {
+      
+  //     } else if (_root.data === data) {
+
+  //     }
+  //   }
+
+    //   throw new NotImplementedError('Not implemented');
       // remove line with error and write your code here
+      
+  // }
+
+  min(_root = this._root) {
+    if (_root.left != null) return this.min(_root.left)
+    else return _root.data;
+    //   throw new NotImplementedError('Not implemented');
+      // remove line with error and write your code here
+
   }
 
-  min() {
-      throw new NotImplementedError('Not implemented');
+  max(_root = this._root) {
+    //   throw new NotImplementedError('Not implemented');
       // remove line with error and write your code here
-  }
-
-  max() {
-      throw new NotImplementedError('Not implemented');
-      // remove line with error and write your code here
+      if (_root.right != null) return this.max(_root.right)
+      else return _root.data;
   }
 }
 
