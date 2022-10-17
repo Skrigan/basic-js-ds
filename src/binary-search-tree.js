@@ -1,5 +1,4 @@
 const { NotImplementedError } = require('../extensions/index.js');
-
 const { Node } = require('../extensions/list-tree.js');
 
 /**
@@ -81,7 +80,7 @@ class BinarySearchTree {
       }
       _root.data = maxLeft.data;
       _root.left = remover(_root.left, maxLeft.data);
-      
+
       return _root;
     }
   }
