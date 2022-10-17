@@ -73,8 +73,42 @@ class BinarySearchTree {
       else return null;
   }
 
-  // remove(data) {
-  //   let _root = this.find(data)
+  remove(data) {
+    this._root = remover(this._root, data)
+
+    function remover(_root, data) {
+
+      if (_root.data > data) {
+        _root.left = remover(_root.left, data);
+        return _root;
+      } else if (_root.data < data) {
+        _root.right = remover(_root.right, data);
+        return _root
+      } else {
+
+        if (!_root.left) {
+          _root = _root.right;
+          return _root;
+        }
+
+        if (!_root.right) {
+          _root = _root.left;
+          return _root;
+        }
+
+        let maxLeft = _root.left;
+        while (maxLeft.right) {
+          maxLeft = maxLeft.right;
+        }
+        _root.data = maxLeft.data;
+
+        _root.left = remover(_root.left, maxLeft.data);
+
+        return _root;
+
+      }
+    }
+  }
   //   let _nextRoor = _root;
   //   // let _remove = true;
   //   if (_root.left && _root.left.right) {
@@ -96,14 +130,9 @@ class BinarySearchTree {
   min(_root = this._root) {
     if (_root.left != null) return this.min(_root.left)
     else return _root.data;
-    //   throw new NotImplementedError('Not implemented');
-      // remove line with error and write your code here
-
   }
 
   max(_root = this._root) {
-    //   throw new NotImplementedError('Not implemented');
-      // remove line with error and write your code here
       if (_root.right != null) return this.max(_root.right)
       else return _root.data;
   }
