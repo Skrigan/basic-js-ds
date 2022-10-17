@@ -16,19 +16,19 @@ class BinarySearchTree {
   }
 
   add(data) {
-      let node = new Node(data)
+      let node = new Node(data);
       if (!this._root) this._root = node;
       else searhPath(this._root, node);
 
       function searhPath(_root, node) {
 
         if (_root.data > node.data && _root.left != null) {
-            searhPath(_root.left, node)
-            return
+            searhPath(_root.left, node);
+            return;
         }
         else if(_root.data < node.data && _root.right != null) {
-            searhPath(_root.right, node)
-            return
+            searhPath(_root.right, node);
+            return;
         }
         if (_root.data > node.data) {
             _root.left = node;
@@ -59,7 +59,7 @@ class BinarySearchTree {
 
   remove(data) {
 
-    this._root = remover(this._root, data)
+    remover(this._root, data);
 
     function remover(_root, data) {
       if (_root.data > data) {
@@ -86,12 +86,12 @@ class BinarySearchTree {
   }
 
   min(_root = this._root) {
-    if (_root.left != null) return this.min(_root.left)
+    if (_root.left != null) return this.min(_root.left);
     else return _root.data;
   }
 
   max(_root = this._root) {
-      if (_root.right != null) return this.max(_root.right)
+      if (_root.right != null) return this.max(_root.right);
       else return _root.data;
   }
 }
